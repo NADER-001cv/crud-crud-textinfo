@@ -1,0 +1,1273 @@
+step  number 1 
+write this  command 
+php artisan  make:factory  Name of Factory  - m name of model 
+step number tow 
+
+ factory(App\NMAEOF MODEL::class,number here for data that of created)  then make() function 
+
+step 3 
+
+ factory(App\NMAEOF MODEL::class,number here for data that of created)   then do function create() for data going to database
+
+
+
+composer create-project --prefer-dist laravel/laravel:^7.0 trainone
+
+
+with('variable of send and write in blade ','this is variable come from function or variable simple')
+
+step number 2 
+ call  in our page of blade  by {{}}
+
+step number 3 
+with accept array  
+can you writ by one variable 
+with('var in view',$var from function like paramter or argument come from rout or define varible come from block function')
+
+################ DATABASE  ################
+
+TWO METHODS FOR CREATE DATABASE 
+  METHOD NUMBER ONE 
+GO DIRECT  MAKES ALL TABLES  IN  phpmyadmin 
+
+  METHOD NUMBER TWO 
+GO  TERMINAL  MAKE MIGRATION THAT REPRESENTAL TABLE  ( by command ) with model 
+
+
+
+php artisan make:migration  create_nameoftabledeterminsbys_table
+  when forget column  for migration 
+  php artisan make:migration  add_nameof_field_to_nameoftable_table   --table=give us name of table that exist in phpmuadmin 
+
+    php  artisan make:model  name of model single  with migration 
+can you write  -m   or --migration 
+
+
+
+
+   ########## IN FILE  MIGRATION   THERE ARE THREE USE 
+
+use number one
+ untell said for laravel this file can you give us name FILE  migration
+
+ use  number two 
+ Blueprint it is class  the role of this class transfer migration file to table to PHPMYADMIN
+ BLUPRINT CLASS REPRESENTAL PLAN CAN ABLE  TO TRANSFER CLASS TO TABLE
+  blueprint $table
+  generate all fild or champ 
+
+USE  NUMBER THREE  
+" SCHEMA  ""  we are know the file of migration writen  by php language  
+  but when we want or like transfert this code
+ php  to  SQL  LANGUAGES 
+  CAN YOU SAY ALSO schema  help us excute In PHPMYADMIN  transfer the code php to sql 
+
+   #############  TWO FUNCTION  up()   down()  
+up function for creat the table 
+down function for drop  table 
+
+
+################################  MODEL  ###########
+   mODEL IS REPRESENTAL CYCLE   BETWEEN OUR APP  && database  
+(ey mathel 7al9et wasel baynn app  w bas de donne )
+
+the role of $filable  all fields  than 
+
+$fillable  al achyaa  alaty sawf tet3aba fil 79oul 
+
+
+
+
+
+
+
+
+
+
+
+  ######################################  database  #################
+    open    phpmyadmin   
+   then creat new  database  
+  then go  to file  .env  
+   write  name  of database  
+
+   click on user account  
+  create new user or add  new user  
+   give us  password &&  user name that used this database 
+
+
+
+
+
+
+
+#########################  CRUD ##################
+
+  php artisan make:model    name of model must be single -mcr     (make migration the make controller with all functions )
+
+
+if was  the column not obligation give us  nullable()
+
+###########################  Session in  blade  #############""
+
+   when we like display some message for users  
+  Session::get('this  message writen in controller with function with('message','  ......... ') 
+
+
+{!!  !!}
+
+########################  end session  ####################""""
+
+  ###########################  softdelete()  #################  
+php artisan make:migration  add_soft_delete_to_namefotables_table  --table=name of table
+ php artisan make:migration  add_soft_delete_to_products_table   --table=products
+
+  $table->softdelete()  add in file migration 
+
+  in model  write  
+         use SoftDeletes ;
+    under namespace in model  
+use Illuminate\Database\Eloquent\SoftDeletes;
+   under  class  model  
+use   SoftDeletes; ;
+protected  $dates = ['deleted_at'] ;
+###################  end soft delete ###########
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#############################################  CRUD  BY LARAVEL #############################
+
+CREATE FODER  IN VIEW  GIVE US NAME  FOR EXAMPLE  
+ CRUD
+     CREATE.BLADE.PHP
+     SHOW.BLADE.PHP
+     INDEX.BLADE.PHP
+     EDIT.BLADE.PHP 
+
+------------>   ROUTE  
+--------------> web.php
+  Route::get('post/creat','NameController@index')->name('getForm.create') ;     
+    
+   Route::post('post/store','NameController@saveForm')->name('saveForm.store') ; 
+
+
+   Route::get('post/{id}', 'NameController@retrieveData')->name('post.alldata') ;
+
+    Route::post('updatepost/{id}','NameController@update')->name('post.update') ;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+########################################  IN  controller  #############
+
+
+
+
+
+public function  saveForm(Request $request){
+
+
+              Nameofmodel::create([
+       'this field come from model '  =>  ' $request-> thisname come from front ',
+          'this field come from model '  =>  ' $request-> thisname come from front ',
+            'this field come from model '  =>  ' $request-> thisname come from front ',
+              '  ......... '               =>   '  ...............   ',
+                   '   ..     '            =>   '  ..........     ' ,
+                     '   ..     '            =>   '  ..........     ' ,
+                       '   ..     '            =>   '  ..........     ' ,
+
+
+]);
+
+          return            ;
+
+}
+
+
+  there are many method for retrive data from database  
+
+      public  function retrieveData(){
+           
+              NameofModel::select('id','field number one ', 'field number tow', ,  ..., 'field number n ')->get() ;
+                or 
+                NameofModel::all() ;     this is bad method  
+               NameofModel::latest()->-pagenate(give us an number must be number here if don' number so not work ) ;
+                   then pass  in view  PUT    $VAR THIS VARIABLE PASS FROM CONTROLLER TO VIEW BY MANY METHOD 
+                  1§  METHOD COMPACT()  OR METHOD WITH()
+
+
+
+                return ;
+
+ }
+
+
+        ##############  FIND BY ID ######
+
+   public function  editBYID($id){
+
+          NameofModel::findorfail($id)  ;
+           NameOfmodel::find($id);   retrieve  the table by only id 
+           
+                 NameofModel::select('choose column that we want to displat ') ->get() ;
+         
+}
+
+
+
+
+
+
+        public  function update(Request $request,$id) {
+
+            //  check if exist  the model  yes or no by 
+             
+ 
+                 $variable =   NameofModel::find($id) ;
+                     if (!$variable)
+                     return redirect()->back() ;
+
+             $variable->update($reques->all()) ;
+
+             or 
+         $variable->update([
+        ' name of column come from model  1 ' => $request-> ' name  come from view  1' , 
+             ' name of column come from model  1 ' => $request-> ' name  come from view  1' , 
+                ' name of column come from model  3 ' => $request-> ' name  come from view  3' , 
+
+                      '  ..........  '               =>  ' ...........  '  )] ;
+
+return      redirect()->back()->with([ '  '  =>  '  .. '])  ;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ###############################  system authententicate  #########################
+
+
+  composer require laravel/ui:^2.4
+
+php artisan ui vue --auth
+
+user interface  package  t7aded echnowa  t7b tetaamil 
+n7b elwagyyhaat rsoumia  ui  
+
+Auth::routes(['register' => false])
+
+['register' => false,'login' => false]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+##########################   php debug   ###################
+
+phpinfo()  
+
+
+in file  php.ini
+
+display_error = On
+
+error_reporting = E_All
+
+
+
+ini_set("display_error",'On')
+
+
+
+
+
+
+
+
+error_reporting(EçALL°
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+###############################################  ERM  
+
+https://abdelhadymohamed.com/article/13/eloquent-many-to-many-relationship
+
+https://abdelhadymohamed.com/article/14/eloquent-one-to-many-relationship
+
+https://abdelhadymohamed.com/article/15/eloquent-one-to-one-relationship
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+##################################  Session   #####################"""
+
+what is the session is  an type  of store some data  but  
+go  in laravel  open the folder config  then open file  session 
+how to store this data  
+
+  by   file  cookie database ...
+
+  it  has time   120 minutes   lifetime 
+
+when close  the browser  delete  session  false  become true
+
+'expire_on_close' => false,
+
+'expire_on_close' => true,
+
+
+where store  the data  of session   
+use this  function 
+
+storage_path  ------------>folder storage/framework/session
+
+
+
+
+
+
+
+
+
+  ##########################  LANGUAGES  IN LARAVEL  #######################3
+
+    GO TO FOLDER RESOURCE THEN  FOLDER LANG  
+
+    default  languages  use  en   in colder  config then open file app.php
+
+         '_locale' => 'en',     (fy  7alet fe9dal lo88a defaul  tham  fallback
+lo88a  e7tiatia 
+  'fallback_locale' => 'en',  
+
+   WHENE OPEN FOLDER   LANG IN RESOURCE  
+    CREATE FILE  AND  GIVE US  NAME  FOE EXAMPLA  MESSAGE.PHP  
+   <?php
+    return [
+        ' key 1 '   =>   '',
+              ' key 1 '   =>   'value 1',
+  ' key 2 '   =>   '',
+  ' key 1 '   =>   '',
+  ' key 3 '   =>   '',
+  ' key .. '   =>   'value ..',
+  ' key n '   =>   'value n',
+    ]  ;
+
+     for  use  this file  (3lchan  nosel lil  file  ely sn3tou  nesta3mil  helper function  trans('name file.key 1')
+    
+
+   in  view  
+
+    {{trans('name file.key ')}}
+
+
+
+
+
+
+
+
+
+
+
+#####################################################  STORAGE CLASS  &&   SYSTEM  FILE  IN FOLDER config ##############
+
+  ***********  if use local  default 
+
+   goowa  or elda55el  fy folder  app   mobachrattaannnn 3an taryy99  helper function 
+       storage_path
+
+      'local' => [
+            'driver' => 'local',
+            'root' => storage_path('app'),
+        ],
+   goowa  or elda55el  fy folder  app then folder public
+        'public' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public'),
+            'url' => env('APP_URL').'/storage',
+            'visibility' => 'public',
+        ],
+
+
+
+     CREATE ANOTHE  FOLDER  IN PUBLIC  
+
+       'public_path' => [
+            'driver' => 'local',
+            'root' => PUBLIC_path('storage'),  //  storage is an folder 
+            'url' => env('APP_URL').'/storage',
+            'visibility' => 'public',
+        ],
+
+
+   we can use Alias  CLASS  LIKE  Storage  in controller  
+  use Storage ;
+
+  public function upload(){
+
+   Storage::disc(local')->put('name of text',request('content for this fille or text') ;
+                or  3lachan kol malf  wel w99t mt33ou 
+    Storage::disc(local')->put(time() ._'name of text',request('content for this fille or text') ;
+     or  
+   we  want to know the  url of file created  
+   Storage::url('name of file') ;
+   Storage::get('name of file') ;
+
+    date()  tomathel  w99tt ma9rou22 
+      return  date(y-m-d ,  Storage::lastModified('name of file') ; 
+   return   request(' same content ')  ;
+  }
+
+
+   in Rout  not  forget for this function 
+   then  go  to file  .env  
+
+FILESYSTEM_DRIVER= local  or  We can change  local  by  public
+
+
+
+
+
+
+
+
+ ahmed.emam.dev@gmail.com
+
+
+
+
+
+
+ #############################################  POO  ##############333333
+
+  PUBLIC   (  3am  
+  PRIVATE   (5ass
+   PROTECTED   ( ma7my
+
+   STATIC   ( KAA2EN MOT7ARK   TE9DER ETNADYH  FY AY  BLAASSA
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+##########################################   package  mcamara  #####################################""
+
+
+composer require mcamara/laravel-localization
+
+php artisan vendor:publish --provider="Mcamara\LaravelLocalization\LaravelLocalizationServiceProvider"
+
+
+
+register  middleware  in kernel.php  
+
+   routemiddleware 
+             'localize'                => \Mcamara\LaravelLocalization\Middleware\LaravelLocalizationRoutes::class,
+        'localizationRedirect'    => \Mcamara\LaravelLocalization\Middleware\LaravelLocalizationRedirectFilter::class,
+        'localeSessionRedirect'   => \Mcamara\LaravelLocalization\Middleware\LocaleSessionRedirect::class,
+        'localeCookieRedirect'    => \Mcamara\LaravelLocalization\Middleware\LocaleCookieRedirect::class,
+        'localeViewPath'          => \Mcamara\LaravelLocalization\Middleware\LaravelLocalizationViewPath::class
+
+
+
+
+
+
+
+
+
+
+
+edit  supportedlocals  in config laravel localisation 
+
+commet es (spanish   uncomment  ar arabic 
+
+
+
+
+
+
+
+
+
+
+
+#######################################  end  package  ############################################
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#########################  command  git  ######################  
+
+create new branch  on github  
+
+git  checkout   -  b   new branch  
+
+
+ do some  chang by  comment  or by new code  ( elmohem tzyyd 7aga  baaed  lat3mil  new  branch )
+
+  git push  then 
+
+   git push --set-upstream origin blog_app2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+##################################################  SERVICE  PROVIDER  ##################
+
+  SERVICE PROVIDER  extend  the  illuminate\Support\ServiceProvider   class
+
+php artisan  make:provider  TestServiceProvider 
+
+
+
+
+  there are two  function  REGISTER &&  BOOT 
+
+   FUNCTION REGISTER 
+
+  SERVICES KOL  MA7TOUTA   FY  7AGA  ESMHA  SERVICE  CONTAINER  (tba9)
+
+  kifech ncha88el mithal service wa7ed   3an taryy9  function register
+
+  kol provider ely mawjouda fy laravel yet7atou fy tba9   ely houwa  service container w kifech ye7atou 3an taryy9
+  function register 
+  lakin kifech nch88elha  ela  3an taryy9  function register  
+
+  a9der owsel  lel  service container  nktteb goowa function register(){
+
+$this->app->bind(  
+
+) ;
+
+
+
+
+
+
+
+
+
+
+
+
+###############################  Model   ############################
+
+migratation law  fyyh  ay t33dy  fy tlatha  hathom  lazem  to5ber  el   model 
+column  esmou  id  fy laravel defautl  &&  unsigned  big integer  auto increment 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+###############################  link multi auth  ##################  
+
+
+
+
+
+https://www.positronx.io/create-multi-auth-authentication-in-laravel/
+
+
+
+
+
+
+
+
+
+
+
+
+####################################  how TO INSERT  MULTI LANGUAGES  IN LARAVEL  ############33
+
+  
+   if (Grade::where('Name->ar', $request->Name)->orWhere('Name->en',$request->Name_en)->exists()) {
+
+            return redirect()->back()->withErrors(trans('gradestrans.exists'));
+        }
+
+
+      try {
+        $validated = $request->validated();
+
+        $Grade = new Grade()  ;
+   
+   
+           $Grade->Name = ['en' => $request->Name_en, 'ar' => $request->Name];
+           $Grade->Notes = $request->Notes;
+           $Grade->save();
+   
+   
+         //  toastr()->success('Data has been saved successfully!');
+           toastr()->success(trans('messages.success'));
+           return redirect()->route('grades.index');
+      }
+  
+      catch (\Exception $e){
+        return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+    }
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(StoreGrade $request, $id)
+    {
+        try {
+
+            $validated = $request->validated();
+            $Grades = Grade::findOrFail($request->id);
+            $Grades->update([
+              $Grades->Name = ['ar' => $request->Name, 'en' => $request->Name_en],
+              $Grades->Notes = $request->Notes,
+            ]);
+            toastr()->success(trans('messages.Update'));
+            return redirect()->route('grades.index');
+        }
+        catch
+        (\Exception $e) {
+            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+        }
+
+
+
+################################  ERRORS ##############################################
+Target class [App\Http\Controllers\Classroom\ClassroomController] does not exist.
+COORIGE   NAMESPACE 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+####################################### CLEAR CACH ##############################  
+
+
+https://tecadmin.net/clear-cache-laravel-5/#:~:text=Most%20of%20the%20shared%20hosting%20providers%20don%E2%80%99t%20provide,to%20clear%20the%20cache%20of%20the%20Laravel%20application.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#######################  validation ########################  
+
+      $this->validate($request,[
+            'Name'  => 'required',
+            'Name_class_en'    => 'required'
+        ],[
+           'Name.required'  => trans('validation.required'),
+           'Name_class_en.required'  => trans('validation.required'),
+
+
+        ]) ;
+
+
+php artisan make:request 
+
+<?php
+
+namespace App\Http\Requests;
+
+use Illuminate\Foundation\Http\FormRequest;
+
+class StoreGrades extends FormRequest
+{
+    /**
+     * Determine if the user is authorized to make this request.
+     *
+     * @return bool
+     */
+    public function authorize()
+    {
+        return true;
+    }
+
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array
+     */
+    public function rules()
+    {
+        return [
+            //'Name' => 'required',
+            //'Name' => 'required|unique:grades|max:255',
+
+
+        'Name.*' => [
+            'required',
+            'unique:grades,Name',
+            'distinct',
+        ],
+        
+
+            
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'Name.required' => trans('validation.required'),
+
+        ];
+    }
+}
+
+in controller  
+
+  $validated = $request->validated();
+
+
+
+
+
+
+
+
+
+
+
+##################  error  ########################33
+class is missing import  the solution 
+ got  model  then  see namespace  App\Model\Namof class or model 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#################### All commands ############## 
+
+php artisan make:model models\Name model  -m   this is m migratio 
+$table ->id();
+$table ->String('field of table');
+$table ->longtext('field of table');
+$table ->boolean('field of table');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+############################ HOSPITAL ##############################
+
+
+
+
+
+
+
+-------------------------------- LANGUAGES  -------------------------
+
+step n 1
+composer require mcamara/laravel-localization
+
+
+step n 2
+php artisan vendor:publish --provider="Mcamara\LaravelLocalization\LaravelLocalizationServiceProvider"
+
+
+
+step n 3
+GO TO    app/Http/Kernel.php file:
+
+
+
+ 'localize'                => \Mcamara\LaravelLocalization\Middleware\LaravelLocalizationRoutes::class,
+        'localizationRedirect'    => \Mcamara\LaravelLocalization\Middleware\LaravelLocalizationRedirectFilter::class,
+        'localeSessionRedirect'   => \Mcamara\LaravelLocalization\Middleware\LocaleSessionRedirect::class,
+        'localeCookieRedirect'    => \Mcamara\LaravelLocalization\Middleware\LocaleCookieRedirect::class,
+        'localeViewPath'          => \Mcamara\LaravelLocalization\Middleware\LaravelLocalizationViewPath::class
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+https://github.com/Astrotomic/laravel-translatable
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+##################################  laravel breeze #####################
+
+composer require laravel/breeze --dev
+
+
+php artisan breeze:install
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{#################################  ERRORS #################
+
+Illuminate\Auth\EloquentUserProvider::validateCredentials(): Argument #1 
+($user) must be of type Illuminate\Contracts\Auth\Authenticatable,
+ App\Models\Admin given, called in
+ C:\xampp\htdocs\HOSPITAL_PROJECT\vendor\laravel\framework\src\Illuminate\Auth\SessionGuard.php 
+on line 415
+
+Step n 1 go model user then 
+
+ /**
+     * The attributes that are mass assignable.
+     *
+     * @var string[]
+     */
+    protected $fillable = [
+        'name',
+        'email',
+        'password',
+    ];
+
+    /**
+     * The attributes that should be hidden for serialization.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
+
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+    ];
+
+
+  public function handle(Request $request, Closure $next)
+    {
+       if (auth('web')->check()) {
+           return   redirect(RouteServiceProvider::HOME) ;
+       }
+         
+
+       if (auth('admin')->check()) {
+        return   redirect(RouteServiceProvider::ADMIN) ;
+    }
+        return $next($request);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+##############################################""MAIL    #####################################""
+
+
+
+smip
+
+smtp.mailtrap.io  port 2525
+
+or  smtp.gmail.com   por 465
+
+
+
+
+
+
+
+step n 2  
+
+php artisan  config:cache
+
+
+
+'stream'  => [
+    'ssl'   => [
+   'allow_self_signed' => true,
+    'verify_peer' => 'false',
+'verify_peer_name'  => false,
+  ],
+
+
+
+],
+
+
+
+
+
+
+
+
+
+
